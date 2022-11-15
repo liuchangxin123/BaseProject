@@ -4,7 +4,9 @@ import com.example.learn.data.dto.AccountDTO;
 import com.example.learn.data.from.AccountFrom;
 import com.example.learn.data.pojo.Account;
 import com.example.learn.mapper.AccountMapper;
+import com.example.learn.util.RedisUtil;
 import org.junit.jupiter.api.Test;
+import org.junit.platform.commons.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -15,6 +17,9 @@ class LearnApplicationTests {
 
     @Autowired
     private AccountMapper accountMapper;
+
+    @Autowired
+    private RedisUtil redisUtil;
 
     @Test
     void contextLoads() {
@@ -43,6 +48,26 @@ class LearnApplicationTests {
         dto.setId(1);
         List<Account> mapper = accountMapper.findByDTO(dto);
         mapper.forEach(System.out::println);
+    }
+
+    @Test
+    public void getredis() {
+        String value = redisUtil.get("pluto");
+        if (StringUtils.isBlank(value)){
+            System.out.println("key no value");
+        } else {
+            System.out.println(value);
+        }
+    }
+
+    @Test
+    public void setRedis() {
+        redisUtil.set("pluto","testValue");
+    }
+
+    @Test
+    public void removeRedis() {
+        redisUtil.del("pluto");
     }
 
 }

@@ -18,11 +18,11 @@ import java.util.List;
 @Repository
 public interface AccountMapper {
 
-    public List<Account> findAll();
+     List<Account> findAll();
 
-    public List<Account> findByDTO(AccountDTO accountDTO);
+     List<Account> findByDTO(AccountDTO accountDTO);
 
-    public int add (AccountFrom accountFrom);
+     int add (AccountFrom accountFrom);
 
 
 

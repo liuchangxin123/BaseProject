@@ -1,5 +1,7 @@
 package com.example.learn.config;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
+import io.swagger.models.auth.In;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -22,6 +24,19 @@ public class JsonResult {
     //是否成功
     private Boolean success;
 
+    private String msg;
+
+    public JsonResult(Integer code, Boolean success) {
+        this.code = code;
+        this.success = success;
+    }
+
+    public JsonResult(Integer code, Object data, Boolean success) {
+        this.code = code;
+        this.data = data;
+        this.success = success;
+    }
+
     /**
      * 正确时返回的信息
      */
@@ -29,10 +44,14 @@ public class JsonResult {
         return new JsonResult(200, data, true);
     }
 
+    public static JsonResult ok() {
+        return new JsonResult(200, true);
+    }
+
     /**
      * 错误时返回的信息
      */
     public static JsonResult error(String msg) {
-        return new JsonResult(500, null, false);
+        return new JsonResult(500, null, false, msg);
     }
 }

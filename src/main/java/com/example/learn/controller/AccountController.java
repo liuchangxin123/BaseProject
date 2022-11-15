@@ -41,8 +41,8 @@ public class AccountController {
     @PostMapping("/pluto/account/add")
     @ApiOperation(value = "添加账号信息")
     public JsonResult addAccountInfo(@RequestBody @Validated AccountFrom accountFrom) {
-        List<Account> all = accountService.findAll();
-        return JsonResult.ok(all);
+        accountService.add(accountFrom);
+        return JsonResult.ok();
     }
 
 }

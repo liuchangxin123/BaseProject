@@ -392,6 +392,18 @@ public class RedisUtil {
         return redisTemplate.opsForHash().size(key);
     }
 
+    /**
+     * 设置 key 的 field 的值
+     *
+     * @param key   key
+     * @param field 字段
+     * @param value 值
+     */
+    public  void hset(String key, String field, String value, Integer time) {
+        redisTemplate.opsForHash().put(key, field, value);
+        redisTemplate.opsForHash().getOperations().expire(key, time, TimeUnit.SECONDS);
+    }
+
     //- - - - - - - - - - - - - - - - - - - - -  list类型 - - - - - - - - - - - - - - - - - - - -
 
     /**

@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+import static com.example.learn.controller.Routes.*;
+
 /**
  * @ClassName AccountController
  * @Description 账号管理
@@ -31,14 +33,14 @@ public class AccountController {
 
 
 
-    @GetMapping("/pluto/account/find/all")
+    @GetMapping(ACCOUNT_FIND_ALL)
     @ApiOperation(value = "查询所有的账号信息")
     public JsonResult findAll() {
         List<Account> all = accountService.findAll();
         return JsonResult.ok(all);
     }
 
-    @PostMapping("/pluto/account/add")
+    @PostMapping(ACCOUND_ADD)
     @ApiOperation(value = "添加账号信息")
     public JsonResult addAccountInfo(@RequestBody @Validated AccountFrom accountFrom) {
         accountService.add(accountFrom);

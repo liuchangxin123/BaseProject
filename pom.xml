@@ -131,6 +131,18 @@
             <artifactId>sa-token-dao-redis</artifactId>
             <version>1.32.0</version>
         </dependency>
+
+        <!-- Mybatis-Plus） -->
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-boot-starter</artifactId>
+            <version>3.2.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-generator</artifactId>
+            <version>3.2.0</version>
+        </dependency>
     </dependencies>
 
     <build>

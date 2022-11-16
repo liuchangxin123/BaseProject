@@ -4,6 +4,7 @@ import cn.hutool.core.map.MapUtil;
 import com.example.learn.config.JsonResult;
 import com.example.learn.util.RedisUtil;
 import com.google.code.kaptcha.Producer;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,6 +23,7 @@ import java.util.UUID;
  * @Author pluto
  */
 @RestController
+@Api(tags = "获取图形验证码")
 public class CaptchaController {
 
     private static final String CAPTCHA_KEY = "captcha";

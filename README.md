@@ -1,5 +1,7 @@
 # pluto learn project
 
+JDK 11
+
 默认使用的是`application-local.yml` 需要多版本的可以add or update
 
 入参  `controller` 层 `From` 转换`Dto` 查询数据层

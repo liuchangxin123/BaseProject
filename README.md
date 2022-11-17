@@ -17,3 +17,7 @@ http://localhost:8080/swagger-ui.html
 #### 接口统一resultful风格 使用JsonResult 有全局捕获异常处理
 
 ####  权限认证使用的是sa-token 详情可以参考 https://sa-token.dev33.cn/doc.html#/
+
+#### 集成了Mybatis、Mybatis-plus
+
+#### 集成了easyExcel 参考实例 TestExportController

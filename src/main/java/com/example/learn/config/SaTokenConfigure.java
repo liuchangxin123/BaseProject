@@ -24,7 +24,8 @@ public class SaTokenConfigure implements WebMvcConfigurer {
         // 注册 Sa-Token 拦截器，校验规则为 StpUtil.checkLogin() 登录校验。
         registry.addInterceptor(new SaInterceptor(handle -> StpUtil.checkLogin()))
                 .addPathPatterns("/**")
-                .excludePathPatterns("/pluto/public/api/**");
+                .excludePathPatterns("/pluto/public/api/**")
+                .excludePathPatterns("/test/**");  // src/main/java/com/example/learn/test包下面的为测试所以不做登录拦截
     }
 
     /**

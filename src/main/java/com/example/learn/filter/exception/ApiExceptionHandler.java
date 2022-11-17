@@ -1,5 +1,6 @@
 package com.example.learn.filter.exception;
 
+import cn.dev33.satoken.exception.NotLoginException;
 import com.example.learn.config.JsonResult;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.validation.BindException;
@@ -22,5 +23,11 @@ public class ApiExceptionHandler {
     public JsonResult runtimeExceptionHandler(BindException ex) {
         log.error("运行时异常：{}", ex.getMessage(), ex);
         return JsonResult.error(Objects.requireNonNull(ex.getBindingResult().getFieldError()).getDefaultMessage());
+    }
+
+    @ExceptionHandler(NotLoginException.class)
+    public JsonResult notLoginExceptionHandler(NotLoginException ex) {
+        log.error("登录异常：{}", ex.getMessage(), ex);
+        return JsonResult.error("您还没有登录呦,请先登录!");
     }
 }

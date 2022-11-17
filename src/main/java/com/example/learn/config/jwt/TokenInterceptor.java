@@ -1,7 +1,6 @@
-package com.example.learn.config;
+package com.example.learn.config.jwt;
 
 import cn.hutool.json.JSONObject;
-import com.example.learn.util.TokenUtil;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 

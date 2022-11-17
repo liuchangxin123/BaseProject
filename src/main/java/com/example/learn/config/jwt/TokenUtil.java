@@ -1,4 +1,4 @@
-package com.example.learn.util;
+package com.example.learn.config.jwt;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;

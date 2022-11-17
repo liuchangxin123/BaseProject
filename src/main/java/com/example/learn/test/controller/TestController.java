@@ -1,10 +1,13 @@
 package com.example.learn.test.controller;
 
 import com.alibaba.excel.EasyExcel;
+import com.example.learn.config.JsonResult;
 import com.example.learn.config.RabbitTopicConfig;
 import com.example.learn.controller.BaseController;
+import com.example.learn.data.pojo.Login;
 import com.example.learn.test.converter.ExcelListener;
 import com.example.learn.test.data.AccountExport;
+import com.example.learn.util.TokenUtil;
 import com.example.learn.util.excel.CommonCellStyleStrategy;
 import com.example.learn.util.excel.CustomCellWriteHandler;
 import com.google.common.collect.Lists;
@@ -24,8 +27,8 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
- * @ClassName TestExportController
- * @Description 演示导入导出，无实际用处
+ * @ClassName TestController
+ * @Description 测试所用，无实际用处
  * @Date 2022/11/17 09:55
  * @Author pluto
  */
@@ -106,5 +109,22 @@ public class TestController extends BaseController {
         System.out.println("消费者接收到的消息是"+map.toString());
         //由于配置设置了手动应答，所以这里要进行一个手动应答。注意：如果设置了自动应答，这里又进行手动应答，会出现double ack，那么程序会报错。
         channel.basicAck(message.getMessageProperties().getDeliveryTag(),false);
+    }
+
+    @PostMapping("/test/login")
+    public JsonResult login(@RequestParam("username") String username,@RequestParam("password") String password) {
+        if (username.equals("pluto") && password.equals("1234qwer")) {
+            Login login = new Login();
+            login.setUsername("pluto");
+            login.setPassword("1234qwer");
+            String sign = TokenUtil.sign(login);
+            return JsonResult.ok(sign);
+        }
+        return JsonResult.error("用户名密码不正确");
+    }
+
+    @GetMapping("/test/find")
+    public JsonResult find() {
+        return JsonResult.ok("执行查询方法");
     }
 }

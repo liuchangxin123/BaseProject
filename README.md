@@ -12,10 +12,11 @@
 
 #### 接口统一`resultful`风格 使用`JsonResult` 有全局捕获异常处理
 
-####  权限认证使用的是`sa-token` 详情可以参考 https://sa-token.dev33.cn/doc.html#/
+####  权限认证使用的是`sa-token` 详情可以参考 https://sa-token.dev33.cn/doc.html#/  
+也集成了JWT，需要`jwt`拦截时开启`JWTConfiguration.java`, 同时需要注意`sa-token` 和 `jwt` 同时开启的情况，可能会有意想不到的效果呦！所以一般使用一种方式就好，注释掉`config`类就可以
 
 #### 集成 `Mybatis`、`Mybatis-plus`
 
 #### 集成`easyExcel` 参考实例 `TestController`
 
-#### 集成`rabbitmq` 参考示例 `TestController`
+#### 集成`rabbitmq`  地址：http://localhost:15672/#/queues 用户名/密码：`guest` 参考示例 `TestController`

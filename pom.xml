@@ -151,7 +151,11 @@
             <version>2.2.11</version>
         </dependency>
 
-        <!-- pinyin -->
+        <!-- rabbitmq https://mvnrepository.com/artifact/com.rabbitmq/amqp-client -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-amqp</artifactId>
+        </dependency>
 
     </dependencies>
 

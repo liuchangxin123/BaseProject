@@ -1,19 +1,27 @@
 package com.example.learn.test.controller;
 
 import com.alibaba.excel.EasyExcel;
+import com.example.learn.config.RabbitTopicConfig;
 import com.example.learn.controller.BaseController;
 import com.example.learn.test.converter.ExcelListener;
 import com.example.learn.test.data.AccountExport;
 import com.example.learn.util.excel.CommonCellStyleStrategy;
 import com.example.learn.util.excel.CustomCellWriteHandler;
 import com.google.common.collect.Lists;
+import com.rabbitmq.client.Channel;
+import org.springframework.amqp.core.Message;
+import org.springframework.amqp.rabbit.annotation.RabbitHandler;
+import org.springframework.amqp.rabbit.annotation.RabbitListener;
+import org.springframework.amqp.rabbit.connection.CorrelationData;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Date;
-import java.util.List;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 /**
  * @ClassName TestExportController
@@ -22,7 +30,9 @@ import java.util.List;
  * @Author pluto
  */
 @RestController
-public class TestExportController extends BaseController {
+public class TestController extends BaseController {
+    @Autowired
+    private RabbitTemplate rabbitTemplate;
 
     /**
      * 导出
@@ -75,5 +85,26 @@ public class TestExportController extends BaseController {
 
         // 方式二：对照doReadSync()方法的是最后调用doRead()方法，不进行结果返回，而是在ExcelListener中进行一条条数据的处理；
         EasyExcel.read(file.getInputStream(), AccountExport.class, new ExcelListener()).sheet().doRead();
+    }
+
+    @GetMapping("/test/sendMessage")
+    public String sendTopicMessage(){
+        String messageId = UUID.randomUUID().toString();
+        String messageData = "test message,hello!";
+        String current = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
+        Map<String,Object> map = new HashMap<>();
+        map.put("messageId",messageId);
+        map.put("data",messageData);
+        map.put("current",current);
+        rabbitTemplate.convertAndSend(RabbitTopicConfig.EXCHANGE_TOPICS_INFORM, "inform.email.a", map, new CorrelationData(UUID.randomUUID().toString()));
+        return "ok";
+    }
+
+    @RabbitListener(queues = RabbitTopicConfig.QUEUE_INFORM_EMAIL)
+    @RabbitHandler
+    public void process(Map map , Channel channel, Message message) throws IOException {
+        System.out.println("消费者接收到的消息是"+map.toString());
+        //由于配置设置了手动应答，所以这里要进行一个手动应答。注意：如果设置了自动应答，这里又进行手动应答，会出现double ack，那么程序会报错。
+        channel.basicAck(message.getMessageProperties().getDeliveryTag(),false);
     }
 }

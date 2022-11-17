@@ -2,7 +2,7 @@ package com.example.learn.test.controller;
 
 import com.alibaba.excel.EasyExcel;
 import com.example.learn.config.JsonResult;
-import com.example.learn.config.RabbitTopicConfig;
+import com.example.learn.config.rabbitmq.RabbitTopicConfig;
 import com.example.learn.controller.BaseController;
 import com.example.learn.data.pojo.Login;
 import com.example.learn.test.converter.ExcelListener;

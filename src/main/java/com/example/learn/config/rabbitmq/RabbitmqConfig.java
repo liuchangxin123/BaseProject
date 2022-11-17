@@ -1,4 +1,4 @@
-package com.example.learn.config;
+package com.example.learn.config.rabbitmq;
 
 import org.springframework.amqp.core.AcknowledgeMode;
 import org.springframework.amqp.rabbit.config.RetryInterceptorBuilder;

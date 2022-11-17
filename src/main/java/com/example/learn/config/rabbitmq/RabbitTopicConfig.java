@@ -1,4 +1,4 @@
-package com.example.learn.config;
+package com.example.learn.config.rabbitmq;
 
 import org.springframework.amqp.core.*;
 import org.springframework.beans.factory.annotation.Qualifier;

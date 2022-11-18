@@ -1,7 +1,5 @@
 package com.example.learn.config;
 
-import com.sun.org.apache.xpath.internal.operations.Bool;
-import io.swagger.models.auth.In;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

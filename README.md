@@ -7,6 +7,8 @@ JDK 8
 入参  `controller` 层 `From` 转换`Dto` 查询数据层
 出参  数据层 `pojo` 转换`VO` 返回前端
 
+#### 数据库结构 参考resources.db
+
 #### `swagger url` ：http://localhost:8080/swagger-ui.html
 
 #### `redis`  使用`redis`需要修改配置文件里面`redis`的地址,用户名,密码
@@ -23,3 +25,5 @@ JDK 8
 #### 集成`rabbitmq`  地址：http://localhost:15672/#/queues 用户名/密码：`guest` 参考示例 `TestController`
 
 #### 使用`Mapstrcut`来节省setget方法 使用方法参考 https://juejin.cn/post/6994233847076356133
+
+#### PinyinHelper的jar包需要本地导入，不需要的话可以注释掉PinyinUtil

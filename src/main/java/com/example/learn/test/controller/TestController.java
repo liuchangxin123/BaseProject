@@ -2,12 +2,13 @@ package com.example.learn.test.controller;
 
 import com.alibaba.excel.EasyExcel;
 import com.example.learn.config.JsonResult;
+import com.example.learn.config.jwt.TokenUtil;
 import com.example.learn.config.rabbitmq.RabbitTopicConfig;
 import com.example.learn.controller.BaseController;
 import com.example.learn.data.pojo.Login;
 import com.example.learn.test.converter.ExcelListener;
 import com.example.learn.test.data.AccountExport;
-import com.example.learn.config.jwt.TokenUtil;
+import com.example.learn.test.service.testService;
 import com.example.learn.util.excel.CommonCellStyleStrategy;
 import com.example.learn.util.excel.CustomCellWriteHandler;
 import com.google.common.collect.Lists;
@@ -36,6 +37,9 @@ import java.util.*;
 public class TestController extends BaseController {
     @Autowired
     private RabbitTemplate rabbitTemplate;
+
+    @Autowired
+    private testService testService;
 
     /**
      * 导出
@@ -95,7 +99,7 @@ public class TestController extends BaseController {
         String messageId = UUID.randomUUID().toString();
         String messageData = "test message,hello!";
         String current = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
-        Map<String,Object> map = new HashMap<>();
+        HashMap<String,Object> map = new HashMap<>();
         map.put("messageId",messageId);
         map.put("data",messageData);
         map.put("current",current);
@@ -126,5 +130,10 @@ public class TestController extends BaseController {
     @GetMapping("/test/find")
     public JsonResult find() {
         return JsonResult.ok("执行查询方法");
+    }
+
+    @GetMapping("/test/shiwu")
+    public void shiwu() {
+        testService.transactional();
     }
 }

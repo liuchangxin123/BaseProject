@@ -1,4 +1,4 @@
-# pluto learn project
+# pluto base project
 
 JDK 8
 
@@ -7,7 +7,7 @@ JDK 8
 入参  `controller` 层 `From` 转换`Dto` 查询数据层
 出参  数据层 `pojo` 转换`VO` 返回前端
 
-#### 数据库结构 参考resources.db
+#### 数据库结构 参考 `resources/db/**.sql`
 
 #### `swagger url` ：http://localhost:8080/swagger-ui.html
 
